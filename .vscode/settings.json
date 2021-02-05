@@ -1,0 +1,36 @@
+{
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      {
+        "language": "react",
+        "autofix": true
+      }
+    ],
+    "editor.wrappingIndent": "deepIndent",
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "prettier.arrowParens": "avoid",
+    "prettier.bracketSpacing": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "typescript.preferences.quoteStyle": "single",
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatterOptions": {
+      "js-beautify-html": {
+        "wrap_attributes": "force-aligned"
+      }
+    },
+    "tslint.jsEnable": true
+  }
+  
