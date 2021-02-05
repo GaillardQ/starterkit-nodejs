@@ -1,6 +1,6 @@
-import mysql from 'mysql';
+import Mysql from 'mysql';
 
-let mysqlConnection: mysql.Connection | undefined = undefined;
+let mysqlConnection: Mysql.Connection | undefined = undefined;
 
 export const createMySQLConnection = (params: {
   host: string;
@@ -9,7 +9,8 @@ export const createMySQLConnection = (params: {
   password: string;
   database: string;
 }) => {
-  mysqlConnection = mysql.createConnection(params);
+  console.log('params', params);
+  mysqlConnection = Mysql.createConnection(params);
   mysqlConnection.connect(err => {
     if (err) throw err;
     console.log(`[db]: Server connected to database ${params.database}`);

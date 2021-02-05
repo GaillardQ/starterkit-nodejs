@@ -1,27 +1,22 @@
 // Node libs
-import express from 'express';
-import createError from 'http-errors';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import dotenv from 'dotenv';
-import * as mySQLUtils from './src/App/Core/Database/mysql';
-
-// Routers
+import Express from 'express';
+import CreateError from 'http-errors';
+import Path from 'path';
+import CookieParser from 'cookie-parser';
+import Logger from 'morgan';
+import Dotenv from 'dotenv';
+// Project files
+import * as DatabaseUtils from './src/App/Core/Database/Database';
 import Router from './src/App/Router';
 
 // Main settings
-dotenv.config();
+Dotenv.config();
 const PORT = process.env.APP_PORT || 3000;
 const HOST = process.env.APP_HOST || 'http://localhost';
-const DB_HOST = process.env.APP_DB_HOST || 'localhost';
-const DB_PORT = process.env.APP_DB_PORT || '3306';
-const DB_USER = process.env.APP_DB_USER || 'root';
-const DB_PWD = process.env.APP_DB_PWD || 'root';
-const DB_NAME = process.env.APP_DB_NAME || 'database';
+const SGBD = process.env.APP_DB_SGBD || 'mysql';
 
 // App creation
-const app = express();
+const app = Express();
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`[server]: Server is running at ${HOST}:${PORT}`);
@@ -29,20 +24,14 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // App settings
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(Logger('dev'));
+app.use(Express.json());
+app.use(Express.urlencoded({ extended: false }));
+app.use(CookieParser());
+app.use(Express.static(Path.join(__dirname, 'public')));
 
 // Database
-mySQLUtils.createMySQLConnection({
-  host: DB_HOST,
-  port: parseInt(DB_PORT),
-  user: DB_USER,
-  password: DB_PWD,
-  database: DB_NAME,
-});
+DatabaseUtils.createDatabaseConnection(SGBD);
 
 // Main router
 Router.forEach(r => {
@@ -51,7 +40,7 @@ Router.forEach(r => {
 
 // Error handlers
 app.use(function (req, res, next) {
-  next(createError(404, 'Page not found'));
+  next(CreateError(404, 'Page not found'));
 });
 
 app.use(function (err: any, req: any, res: any, next: any) {

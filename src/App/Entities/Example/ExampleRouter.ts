@@ -1,10 +1,10 @@
-import express from 'express';
+import Express from 'express';
 
 import * as ExampleController from './ExampleController';
 
-const exampleRouter = express.Router();
+const ExampleRouter = Express.Router();
 
 /* GET examples. */
-exampleRouter.get('/', ExampleController.list);
+ExampleRouter.get('/', ExampleController.list);
 
-export default exampleRouter;
+export default ExampleRouter;
