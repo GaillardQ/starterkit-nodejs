@@ -40,7 +40,7 @@ Router.forEach(r => {
 
 // Error handlers
 app.use(function (req, res, next) {
-  next(CreateError(404, 'Page not found'));
+  next(CreateError(404, 'Route not found'));
 });
 
 app.use(function (err: any, req: any, res: any, next: any) {

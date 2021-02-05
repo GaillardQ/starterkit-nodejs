@@ -1,6 +1,6 @@
 // SGBD Utils
-import * as mySQLUtils from '../../Core/Database/Mysql';
+import * as DatabaseUtils from '../../Core/Database/Database';
 
 export const getAllExamples = async () => {
-  return await mySQLUtils.query('SELECT * FROM exercises');
+  return DatabaseUtils.executeQuery('SELECT * FROM users');
 };

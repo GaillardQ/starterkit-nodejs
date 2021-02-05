@@ -9,7 +9,6 @@ export const createMySQLConnection = (params: {
   password: string;
   database: string;
 }) => {
-  console.log('params', params);
   mysqlConnection = Mysql.createConnection(params);
   mysqlConnection.connect(err => {
     if (err) throw err;
