@@ -24,3 +24,4 @@ This is more than a starter kit : it provides an architecture to quickly start a
 - See to available GraphQL usage
 - Set connexion process
 - Set emailing system (SendInBlue and Gmail)
+- Set Swagger for API documentation

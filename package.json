@@ -10,7 +10,6 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --watchAll=false"
   },
   "dependencies": {
-    "@types/mysql": "^2.15.17",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
@@ -21,6 +20,8 @@
     "moment": "^2.29.1",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-http-bearer": "^1.0.1",
     "pug": "2.0.0-beta11",
     "uniqid": "^5.2.0"
   },
@@ -30,7 +31,9 @@
     "@types/http-errors": "^1.8.0",
     "@types/jest": "^26.0.20",
     "@types/morgan": "^1.9.2",
+    "@types/mysql": "^2.15.17",
     "@types/node": "^14.14.20",
+    "@types/passport-http-bearer": "^1.0.36",
     "@types/supertest": "^2.0.10",
     "@types/uniqid": "^5.2.0",
     "cross-env": "^7.0.3",

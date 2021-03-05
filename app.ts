@@ -5,6 +5,8 @@ import Path from 'path';
 import CookieParser from 'cookie-parser';
 import Logger from 'morgan';
 import Dotenv from 'dotenv';
+import Passport from 'passport';
+import { Strategy } from 'passport-http-bearer';
 // Project files
 import * as DatabaseUtils from './src/App/Core/Database/Database';
 import Router from './src/App/Router';
@@ -29,6 +31,21 @@ app.use(Express.json());
 app.use(Express.urlencoded({ extended: false }));
 app.use(CookieParser());
 app.use(Express.static(Path.join(__dirname, 'public')));
+Passport.use(
+  new Strategy((token: string, done: (...args: any) => any) => {
+    /*
+    User.findOne({ token: token }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      return done(null, user, { scope: 'all' });
+    });
+    */
+  })
+);
 
 // Database
 DatabaseUtils.createDatabaseConnection(SGBD);
