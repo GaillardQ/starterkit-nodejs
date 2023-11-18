@@ -1,6 +1,6 @@
 // Node libs
 import CreateError from 'http-errors';
-// Example files
+// @app/example
 import * as ExampleRepository from './ExampleRepository';
 
 /**
@@ -13,6 +13,8 @@ export const list = async (req: any, res: any, next: any) => {
     const test = await ExampleRepository.getAllExamples();
     res.status(200).send(test);
   } catch (e) {
+    let message = 'Une erreur est survenue';
+    if(e instanceof Error) message = e.message;
     next(CreateError(500, 'Une erreur est survenue'));
   }
 };

@@ -1,6 +1,6 @@
 // SGBD Utils
-import * as DatabaseUtils from '../../Core/Database/Database';
+import { RequestContext } from '@mikro-orm/core';
+// @app/example
+import { Example } from './ExampleEntity';
 
-export const getAllExamples = async () => {
-  return DatabaseUtils.executeQuery('SELECT * FROM users');
-};
+export const getAllExamples = async () => await RequestContext.getEntityManager()?.find(Example, {});

@@ -18,10 +18,13 @@ This is more than a starter kit : it provides an architecture to quickly start a
 
 ## TODO
 
-- Set connection for PostgreSQL
+- Set connexion process
+- Set Swagger for API documentation
+- Add logging
+- Set emailing system (SendInBlue and Gmail)
+- Set connection for MySQL
+
 - Set connection for MariaDB
 - Set connection for MongoDB
 - See to available GraphQL usage
-- Set connexion process
-- Set emailing system (SendInBlue and Gmail)
-- Set Swagger for API documentation
+
