@@ -11,16 +11,13 @@
     "http"
   ],
   "paths": {
-    "/example": {
+    "/api/example/list": {
       "get": {
         "tags": [
           "Example"
         ],
-        "summary": "Endpoint d\\'exemple",
-        "description": "Liste exemple",
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Récupère la list des exemples",
+        "description": "",
         "responses": {
           "200": {
             "description": "Examples list",
@@ -32,6 +29,37 @@
               "xml": {
                 "name": "main"
               }
+            }
+          }
+        }
+      }
+    },
+    "/api/example/details/{id}": {
+      "get": {
+        "tags": [
+          "Example"
+        ],
+        "summary": "Récupère un exemple",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example",
+            "schema": {
+              "$ref": "#/definitions/Example"
+            }
+          },
+          "404": {
+            "description": "Entité inconnue",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -53,6 +81,20 @@
         "value": {
           "type": "string",
           "example": "Fat Mike"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "array",
+          "example": [
+            "message"
+          ],
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

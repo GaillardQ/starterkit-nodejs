@@ -6,6 +6,7 @@ import * as ExampleController from './ExampleController';
 const ExampleRouter = Express.Router();
 
 /* GET examples. */
-ExampleRouter.get('/', ExampleController.list);
+ExampleRouter.get('/list', ExampleController.list);
+ExampleRouter.get('/details/:id', ExampleController.details);
 
 export default ExampleRouter;

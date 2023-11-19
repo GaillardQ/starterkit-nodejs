@@ -1,8 +1,9 @@
+// Node libs
+import Express from 'express';
 // @app/entities
 import ExempleRouter from '../Entities/Example/ExampleRouter';
 
-const Router = [
-  { path: 'example', router: ExempleRouter, needAuth: true }
-];
+const indexRouter = Express.Router();
+indexRouter.use('/example', ExempleRouter);
 
-export default Router;
+export default indexRouter;

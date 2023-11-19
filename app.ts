@@ -15,10 +15,9 @@ import swaggerUi from 'swagger-ui-express';
 // @app/core
 import * as DatabaseUtils from './src/App/Core/Database/Database';
 // @app/router
-import Router from './src/App/Router';
+import indexRouter from './src/App/Router';
 // Misc
 import swaggerDocument from './swagger.json';
-import ExampleRouter from './src/App/Entities/Example/ExampleRouter';
 
 // Main settings
 Dotenv.config();
@@ -54,9 +53,7 @@ export const init = (async () => {
   })
 
   // Main router
-  Router.forEach(r => {
-    app.use(`/${r.path}`, r.needAuth ? authMiddleware : (req: Request, res: Response, next: NextFunction) => next(), r.router);
-  });
+	app.use('/api', process.env.APP_ENV === 'dev' ? (req, res, next) => {next()} : authMiddleware, indexRouter);
 	app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Error handlers

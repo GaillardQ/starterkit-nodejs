@@ -11,6 +11,9 @@ const doc = {
       id: 1,
       key: 'Sing / Bass',
 			value: 'Fat Mike'
+    },
+		Error: {
+      error: ["message"]
     }
 	}
 };
