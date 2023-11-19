@@ -1,6 +1,6 @@
 // Node libs
 import CreateError from 'http-errors';
-// @app/example
+// @app/entities
 import * as ExampleRepository from './ExampleRepository';
 
 /**

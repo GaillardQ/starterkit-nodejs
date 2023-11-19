@@ -1,6 +1,6 @@
 // Node libs
 import Dotenv from 'dotenv';
-// SGBD utils
+// @app/core
 import * as mySQLUtils from './Mysql';
 import * as postgreSQLUtils from './Postgresql';
 

@@ -1,7 +1,6 @@
 // Node libs
 import { 
   MikroORM,
-  type EntityManager, 
   type PostgreSqlDriver 
 } from '@mikro-orm/postgresql';
 
@@ -26,5 +25,6 @@ export const createPostgreSQLConnection = async (params: {
       }
     }
   });
+	
   return orm.em;
 };

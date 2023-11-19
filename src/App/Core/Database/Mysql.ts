@@ -1,3 +1,4 @@
+// Node libs
 import Mysql from 'mysql';
 
 let mysqlConnection: Mysql.Connection | undefined = undefined;

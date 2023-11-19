@@ -1,31 +1,32 @@
 // Node libs
-import Express from 'express';
+import Express, { 
+	NextFunction,
+	Request, 
+	Response 
+} from 'express';
 import CreateError from 'http-errors';
 import Path from 'path';
 import CookieParser from 'cookie-parser';
 import Logger from 'morgan';
 import Dotenv from 'dotenv';
-import Passport from 'passport';
-import { Strategy } from 'passport-http-bearer';
 import { RequestContext } from '@mikro-orm/core';
-// Project files
+import { auth } from 'express-oauth2-jwt-bearer';
+// @app/core
 import * as DatabaseUtils from './src/App/Core/Database/Database';
+// @app/router
 import Router from './src/App/Router';
 
 // Main settings
 Dotenv.config();
 const PORT = process.env.APP_PORT || 3000;
 const HOST = process.env.APP_HOST || 'http://localhost';
+const AUTH_AUDIENCE = process.env.APP_AUTH_AUDIENCE;
+const AUTH_DOMAIN = process.env.APP_AUTH_DOMAIN;
 
 // App creation
 const app = Express();
 
 export const init = (async () => {
-  if (process.env.NODE_ENV !== 'test') {
-    app.listen(PORT, () => {
-      console.log(`[server]: Server is running at ${HOST}:${PORT}`);
-    });
-  }
 
   // App settings
   app.use(Logger('dev'));
@@ -33,22 +34,8 @@ export const init = (async () => {
   app.use(Express.urlencoded({ extended: false }));
   app.use(CookieParser());
   app.use(Express.static(Path.join(__dirname, 'public')));
-  Passport.use(
-    new Strategy((token: string, done: (...args: any) => any) => {
-      /*
-      User.findOne({ token: token }, (err, user) => {
-        if (err) {
-          return done(err);
-        }
-        if (!user) {
-          return done(null, false);
-        }
-        return done(null, user, { scope: 'all' });
-      });
-      */
-    })
-  );
 
+  // Database connection
   const em = await DatabaseUtils.createDatabaseConnection();
 
   app.use((req, res, next) => {
@@ -57,9 +44,14 @@ export const init = (async () => {
     }
   });
 
+  const authMiddleware = auth({
+    audience: AUTH_AUDIENCE,
+    issuerBaseURL: AUTH_DOMAIN,
+  })
+
   // Main router
   Router.forEach(r => {
-    app.use(`/${r.path}`, r.router);
+    app.use(`/${r.path}`, r.needAuth ? authMiddleware : (req: Request, res: Response, next: NextFunction) => next(), r.router);
   });
 
   // Error handlers
@@ -87,6 +79,12 @@ export const init = (async () => {
     }
     res.send(message);
   });
+
+  if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+      console.log(`[server]: Server is running at ${HOST}:${PORT}`);
+    });
+  }
 })();
 
 export default app;
