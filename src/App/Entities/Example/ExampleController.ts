@@ -9,6 +9,18 @@ import * as ExampleRepository from './ExampleRepository';
  * @param res
  */
 export const list = async (req: any, res: any, next: any) => {
+	/* 
+		#swagger.auto = false
+		#swagger.path = '/example'
+		#swagger.method = 'get'
+		#swagger.produces = ['application/json']
+		#swagger.responses[200] = {
+			description: 'Examples list',
+			schema: {
+				$ref: '#/definitions/ExamplesList'
+			}
+		}
+	*/
   try {
     const test = await ExampleRepository.getAllExamples();
     res.status(200).send(test);

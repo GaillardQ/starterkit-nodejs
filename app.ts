@@ -11,10 +11,14 @@ import Logger from 'morgan';
 import Dotenv from 'dotenv';
 import { RequestContext } from '@mikro-orm/core';
 import { auth } from 'express-oauth2-jwt-bearer';
+import swaggerUi from 'swagger-ui-express';
 // @app/core
 import * as DatabaseUtils from './src/App/Core/Database/Database';
 // @app/router
 import Router from './src/App/Router';
+// Misc
+import swaggerDocument from './swagger.json';
+import ExampleRouter from './src/App/Entities/Example/ExampleRouter';
 
 // Main settings
 Dotenv.config();
@@ -53,6 +57,7 @@ export const init = (async () => {
   Router.forEach(r => {
     app.use(`/${r.path}`, r.needAuth ? authMiddleware : (req: Request, res: Response, next: NextFunction) => next(), r.router);
   });
+	app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Error handlers
   app.use(function (req, res, next) {
@@ -60,7 +65,6 @@ export const init = (async () => {
   });
 
   app.use(async function (err: any, req: any, res: any, next: any) {
-
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

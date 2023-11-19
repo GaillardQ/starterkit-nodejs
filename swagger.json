@@ -1,0 +1,39 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {},
+  "definitions": {
+    "Example": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "key": {
+          "type": "string",
+          "example": "Sing / Bass"
+        },
+        "value": {
+          "type": "string",
+          "example": "Fat Mike"
+        }
+      }
+    },
+    "ExamplesList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Example"
+      }
+    }
+  }
+}
