@@ -10,6 +10,7 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --watchAll=false"
   },
   "dependencies": {
+    "@mikro-orm/cli": "^5.9.4",
     "@mikro-orm/core": "^5.9.4",
     "@mikro-orm/postgresql": "^5.9.4",
     "axios": "^0.21.1",

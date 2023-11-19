@@ -27,8 +27,7 @@ https://mikro-orm.io/docs/installation
 <br />
 
 ## TODO
-
-- Set connection process
+- Handle migrations
 - Set Swagger for API documentation
 - Add logging
 - Set emailing system (SendInBlue and Gmail)
