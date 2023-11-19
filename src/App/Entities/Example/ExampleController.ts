@@ -10,16 +10,20 @@ import * as ExampleRepository from './ExampleRepository';
  */
 export const list = async (req: any, res: any, next: any) => {
 	/* 
-		#swagger.auto = false
-		#swagger.path = '/example'
-		#swagger.method = 'get'
+		#swagger.start
+		#swagger.tags = ['Example']
+		#swagger.path = `/example`
+		#swagger.summary = 'Endpoint d\'exemple'
+		#swagger.description = 'Liste exemple'
+		#swagger.method = 'GET'
 		#swagger.produces = ['application/json']
 		#swagger.responses[200] = {
 			description: 'Examples list',
-			schema: {
-				$ref: '#/definitions/ExamplesList'
-			}
+			schema: [{
+				$ref: '#/definitions/Example'
+			}]
 		}
+		#swagger.end
 	*/
   try {
     const test = await ExampleRepository.getAllExamples();

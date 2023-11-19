@@ -10,7 +10,34 @@
   "schemes": [
     "http"
   ],
-  "paths": {},
+  "paths": {
+    "/example": {
+      "get": {
+        "tags": [
+          "Example"
+        ],
+        "summary": "Endpoint d\\'exemple",
+        "description": "Liste exemple",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Examples list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Example"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "definitions": {
     "Example": {
       "type": "object",
@@ -27,12 +54,6 @@
           "type": "string",
           "example": "Fat Mike"
         }
-      }
-    },
-    "ExamplesList": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Example"
       }
     }
   }

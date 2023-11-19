@@ -11,12 +11,11 @@ const doc = {
       id: 1,
       key: 'Sing / Bass',
 			value: 'Fat Mike'
-    },
-		ExamplesList: [{ $ref: '#/definitions/Example' }]
+    }
 	}
 };
 
 const outputFile = './swagger.json';
-const routes =  ['./app.ts']; // , './src/App/**/*Router.ts'
+const routes =  ['./app.ts', './src/App/**/*Controller.ts'];
 
 swaggerAutogen(outputFile, routes, doc);
